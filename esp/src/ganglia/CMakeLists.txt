@@ -22,7 +22,7 @@ HPCC_ADD_SUBDIRECTORY (templates)
 FOREACH( iFILES
 	${CMAKE_CURRENT_SOURCE_DIR}/GangliaFilterDropDownWidget.js
 	${CMAKE_CURRENT_SOURCE_DIR}/GangliaWidget.js
-	${CMAKE_CURRENT_SOURCE_DIR}/WsRrd.js
+	${CMAKE_CURRENT_SOURCE_DIR}/ws_rrd.js
 	${CMAKE_CURRENT_SOURCE_DIR}/ganglia.json
 )
 

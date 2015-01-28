@@ -22,8 +22,6 @@ define([
     "dojo/dom",
     "dojo/_base/array",
     "dojo/dom-construct",
-    "dojo/dom-attr",
-    "dojo/promise/all",
     "dojo/store/Memory",
     "dojo/request/xhr",
     "dojo/query",
@@ -32,15 +30,8 @@ define([
     "dijit/Menu",
     "dijit/MenuItem",
 
-    "dgrid/OnDemandGrid",
-    "dgrid/Keyboard",
-    "dgrid/Selection",
-    "dgrid/selector",
-    "dgrid/extensions/ColumnResizer",
-    "dgrid/extensions/DijitRegistry",
-
     "./GangliaFilterDropDownWidget",
-    "./WsRrd",
+    "./ws_rrd",
     "hpcc/_TabContainerWidget",
 
     "dojo/text!./templates/GangliaWidget.html",
@@ -63,9 +54,8 @@ define([
     "dijit/MenuSeparator",
     "dijit/PopupMenuItem"
 
-], function (declare, arrayUtil, lang, i18n, nlsHPCC, dom, arrayUtil, domConstruct, domAttr, all, Memory, xhr, query,
+], function (declare, arrayUtil, lang, i18n, nlsHPCC, dom, arrayUtil, domConstruct, Memory, xhr, query,
                 registry, Menu, MenuItem,
-                OnDemandGrid, Keyboard, Selection, selector, ColumnResizer, DijitRegistry,
                 GangliaFilterDropDownWidget, WsRrd, _TabContainerWidget,
                 template,
                 BorderContainer, TabContainer, ContentPane, Toolbar, Button) {
@@ -122,8 +112,7 @@ define([
             });
 
             this.filter.on("clear", function (evt) {
-                context._onFilterType();
-                context.refreshGrid();
+                
             });
             this.filter.on("apply", function (evt) {
                 context._onFilterApply();
@@ -134,14 +123,6 @@ define([
             this.fromGanliaDateRange.on('change', function (newValue) {
                 context._calculateEpoch(newValue);
             });
-        },
-
-         initTab: function () {
-            var currSel = this.getSelectedChild();
-        },
-
-        stringTrim: function () {
-
         },
 
         _calculateEpoch: function(newValue){
@@ -177,7 +158,7 @@ define([
                     Server:""
                 },
             }).then(function (response) {
-                if (lang.exists("GetAvailableClustersResponse", response)) {
+                if (lang.exists("GetAvailableClustersResponse.Clusters.Item", response)) {
                     var output = arrayUtil.map(response.GetAvailableClustersResponse.Clusters.Item, function(item, idx) {
                         return {
                             name: item,
@@ -198,10 +179,10 @@ define([
             this.serverTargetSelect.required = false;
             WsRrd.GangliaServerList({
                 request:{
-                    Cluster: context.cluster
+                    Cluster: this.cluster
                 },
             }).then(function (response) {
-                if (lang.exists("GetAvailableServersForMetricsResponse", response)) {
+                if (lang.exists("GetAvailableServersForMetricsResponse.Servers.Item", response)) {
                     var output = arrayUtil.map(response.GetAvailableServersForMetricsResponse.Servers.Item, function(item, idx) {
                         return {
                             name: item,
@@ -221,11 +202,11 @@ define([
             this.metricsTargetSelect.required = true;
             WsRrd.GangliaMetricList({
                 request:{
-                    Cluster:context.cluster,
-                    Server:context.server
+                    Cluster:this.cluster,
+                    Server:this.server
                 },
             }).then(function (response) {
-                if (lang.exists("GetAvailableMetricsResponse.Metrics", response)) {
+                if (lang.exists("GetAvailableMetricsResponse.Metrics.Item", response)) {
                     var output = arrayUtil.map(response.GetAvailableMetricsResponse.Metrics.Item.sort(), function(item, idx) {
                         return {
                             name: item,
@@ -248,10 +229,10 @@ define([
                 handleAs: "json"
             }).then(function (data){
                 arrayUtil.forEach(data.tabs, function(tabItem, idx) {
+                    var cleanId = tabItem.name.split(' ').join('_');
                     arrayUtil.forEach(tabItem.metrics, function(metricItem) {
+                        var clean = metricItem.join('\n');
                         arrayUtil.forEach(tabItem.time, function(timeItem) {
-                            var clean = metricItem.join('\n');
-                            var cleanId = tabItem.name.split(' ').join('_');
                             context._calculateEpoch(timeItem)
                             WsRrd.GangliaRRDGraphList({
                                 request:{
@@ -278,8 +259,8 @@ define([
                     });
                     var bordercontainer = new BorderContainer({
                         style: "height: 100%; width: 100%;",
-                        title: tabItem.name.split(' ').join('_'),
-                        id: tabItem.name.split(' ').join('_'),
+                        title: cleanId,
+                        id: cleanId,
                         closable: true
                     });
                     var toolbar = new Toolbar({
@@ -309,7 +290,8 @@ define([
                     bordercontainer.startup();
                 });
                 context.tabContainer.selectChild(data.tabs[0].name.split(' ').join('_'));
-                /*setInterval(function () {
+                /*TODO add interval refreshes of each tab
+                setInterval(function () {
                     var node = dom.byId(tabItem.name+idx);
                     query(".left", node).forEach(domConstruct.destroy);
                     context._genGraphRefresh();
@@ -358,11 +340,12 @@ define([
 
         _onFilterApply: function () {
             var context = this;
-            var cluster = context.cluster;
-            var server = context.server;
-            var metrics = context.metrics;
-            var epochFilter = context.epochFilter;
-            var epochNow = context.epochNow;
+            var cluster = this.cluster;
+            var server = this.server;
+            var metrics = this.metrics;
+            var epochFilter = this.epochFilter;
+            var epochNow = this.epochNow;
+            var graphId = this.cluster + "_" + this.server + "_" + this.metrics + "_" + this.epochFilter;
 
             WsRrd.GangliaRRDGraphList({
                 request:{
@@ -373,15 +356,15 @@ define([
                     EndTime: epochNow,
                     Width: 300,
                     Height: 120,
-                    Title: context.cluster + ":" + context.server + ":" + context.metrics
+                    Title: this.cluster + ":" + this.server + ":" + this.metrics
                 },
             }).then(function (response) {
-                if (dojo.byId(context.cluster+context.server+context.metrics+context.epochFilter)) {
+                if (dojo.byId(graphId)) {
                     alert(this.i18n.GraphExists);
                 } else {
                     if (lang.exists ("GraphSVGDataResponse.Graph", response)) {
                         var graph = domConstruct.create("div", {
-                            id: context.cluster+context.server+context.metrics+context.epochFilter,
+                            id: graphId,
                             innerHTML: response.GraphSVGDataResponse.Graph,
                             class:'left'
                         },"graphs");
@@ -390,7 +373,7 @@ define([
 
             var pMenu;
             pMenu = new Menu({
-                targetNodeIds: [context.cluster+context.server+context.metrics+context.epochFilter]
+                targetNodeIds: [graphId]
             });
             pMenu.addChild(new MenuItem({
                 label: "Delete Graph",
@@ -402,14 +385,14 @@ define([
             pMenu.addChild(new MenuItem({
                 label: "Pop Out Graph",
                 onClick: function () {
-                    context._onNewGraphPage(cluster, server, metrics, epochFilter, epochNow);
+                    context._onNewGraphPage(graphId);
                 }
             }));
             pMenu.startup();
             });
         },
 
-        _onNewGraphPage: function (cluster, server, metrics, epochFilter, epochNow) {
+        _onNewGraphPage: function (graphId) {
             xhr("esp/files/ganglia/ganglia.json", {
                 handleAs: "json"
             }).then(function (data){
