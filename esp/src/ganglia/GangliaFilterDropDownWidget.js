@@ -69,7 +69,6 @@ define([
         _onFilterApply: function (event) {
             this.filterDropDown.closeDropDown();
             this.emit("apply");
-            this.refreshState();
         },
 
         //  Implementation  ---

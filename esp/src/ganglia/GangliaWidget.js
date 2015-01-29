@@ -111,14 +111,11 @@ define([
                 context.metrics = newValue;
             });
 
-            this.filter.on("clear", function (evt) {
-                
-            });
             this.filter.on("apply", function (evt) {
                 context._onFilterApply();
             });
 
-            this.fromGanliaDateRange.set(name, value);
+            this.fromGanliaDateRange.set("value", "Year");
 
             this.fromGanliaDateRange.on('change', function (newValue) {
                 context._calculateEpoch(newValue);
@@ -130,19 +127,19 @@ define([
             this.epochNow = Math.round(new Date().getTime()/1000.0);
                 switch(newValue) {
                     case "Year":
-                        context.epochFilter = context.epochNow - 31556926
+                        context.epochFilter = context.epochNow - 31556926;
                     break;
                     case "Month":
-                        context.epochFilter = context.epochNow - 2629743
+                        context.epochFilter = context.epochNow - 2629743;
                     break;
                     case "Week":
-                        context.epochFilter = context.epochNow - 604800
+                        context.epochFilter = context.epochNow - 604800;
                     break;
                     case "Day":
-                        context.epochFilter = context.epochNow - 86400
+                        context.epochFilter = context.epochNow - 86400;
                     break;
                     case "Hour":
-                        context.epochFilter = context.epochNow - 3600
+                        context.epochFilter = context.epochNow - 3600;
                     break;
                     default:
                         context.epocFilter = context.epochNow - 31556926;
@@ -175,7 +172,6 @@ define([
 
         _buildServers: function (newValue) {
             var context = this;
-            console.log(this.serverTargetSelect);
             this.serverTargetSelect.required = false;
             WsRrd.GangliaServerList({
                 request:{
@@ -225,7 +221,7 @@ define([
         _buildTabs: function () {
             var context = this;
             var tabs = registry.byId(this.id + "TabContainer");
-            xhr("esp/files/ganglia/ganglia.json", {
+            xhr("/esp/files/ganglia/ganglia.json", {
                 handleAs: "json"
             }).then(function (data){
                 arrayUtil.forEach(data.tabs, function(tabItem, idx) {
@@ -301,7 +297,7 @@ define([
 
         _genGraphRefresh : function (id) {
             var context = this;
-            xhr("esp/files/ganglia/ganglia.json", {
+            xhr("/esp/files/ganglia/ganglia.json", {
                 handleAs: "json"
             }).then(function (data){
                 arrayUtil.forEach(data.tabs, function(tabItem, idx) {
@@ -334,40 +330,32 @@ define([
             });
         },
 
-        _onRefresh: function (id) {
-
-        },
-
         _onFilterApply: function () {
             var context = this;
-            var cluster = this.cluster;
-            var server = this.server;
-            var metrics = this.metrics;
-            var epochFilter = this.epochFilter;
-            var epochNow = this.epochNow;
             var graphId = this.cluster + "_" + this.server + "_" + this.metrics + "_" + this.epochFilter;
+            //var graph = dom.byId("graphs");
 
             WsRrd.GangliaRRDGraphList({
                 request:{
-                    Clusters: cluster,
-                    Servers: server,
-                    RRDMetrics: metrics,
-                    StartTime: epochFilter,
-                    EndTime: epochNow,
+                    Clusters: this.cluster,
+                    Servers: this.server,
+                    RRDMetrics: this.metrics,
+                    StartTime: this.epochFilter,
+                    EndTime: this.epochNow,
                     Width: 300,
                     Height: 120,
                     Title: this.cluster + ":" + this.server + ":" + this.metrics
                 },
             }).then(function (response) {
                 if (dojo.byId(graphId)) {
-                    alert(this.i18n.GraphExists);
+                    alert(context.i18n.GraphExists);
                 } else {
                     if (lang.exists ("GraphSVGDataResponse.Graph", response)) {
                         var graph = domConstruct.create("div", {
                             id: graphId,
                             innerHTML: response.GraphSVGDataResponse.Graph,
                             class:'left'
-                        },"graphs");
+                        }, dom.byId(context.id + "graphs"));
                     }
                 }
 
@@ -385,15 +373,15 @@ define([
             pMenu.addChild(new MenuItem({
                 label: "Pop Out Graph",
                 onClick: function () {
-                    context._onNewGraphPage(graphId);
+                    context._onNewGraphPage(cluster,server,metrics,epochFilter,epochNow);
                 }
             }));
             pMenu.startup();
             });
         },
 
-        _onNewGraphPage: function (graphId) {
-            xhr("esp/files/ganglia/ganglia.json", {
+        _onNewGraphPage: function (cluster,server,metrics,epochFilter,epochNow) {
+            xhr("/esp/files/ganglia/ganglia.json", {
                 handleAs: "json"
             }).then(function (data){
                 WsRrd.GangliaRRDGraphList({
@@ -403,8 +391,8 @@ define([
                     RRDMetrics: metrics,
                     StartTime: epochFilter,
                     EndTime: epochNow,
-                    Width: data.largeWidth,
-                    Height: data.largeHeight
+                    Width: data.width,
+                    Height: data.height
                 },
             }).then(function (response) {
                     if (lang.exists ("GraphSVGDataResponse.Graph", response)) {
