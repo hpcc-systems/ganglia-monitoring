@@ -18,8 +18,33 @@ if (NOT LICENSE_FILE)
     set (LICENSE_FILE "LICENSE.txt")
 endif()
 
+set (HPCC_SOURCE_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..)
+
+IF ("${HPCC_SOURCE_DIR}" STREQUAL "")
+  SET (HPCC_SOURCE_DIR ${HPCC_SOURCE_ROOT_DIR}/HPCC-Platform)
+ENDIF()
+
 include (${HPCC_GM_SOURCE_DIR}/version.cmake)
+include (${HPCC_GM_SOURCE_DIR}/cmake_modules/optionDefaults.cmake)
 include (${HPCC_GM_SOURCE_DIR}/cmake_modules/gmCommonSetup.cmake)
+include (${HPCC_SOURCE_DIR}/version.cmake)
+
+
+SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -frtti -fPIC -fmessage-length=0 -Wformat -Wformat-security -Wformat-nonliteral -pthread -Wuninitialized")
+
+MESSAGE (HPCC_SOURCE_DIR: ${HPCC_SOURCE_DIR})
+ADD_SUBDIRECTORY(${HPCC_SOURCE_DIR} oss EXCLUDE_FROM_ALL)
+CONFIGURE_FILE(${HPCC_SOURCE_DIR}/build-config.h.cmake "build-config.h" )
+CONFIGURE_FILE(${HPCC_GM_SOURCE_DIR}/scripts/getMetrics.sh.in "getMetrics.sh" )
+INSTALL ( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/getMetrics.sh DESTINATION sbin COMPONENT Runtime)
+
+
+HPCC_ADD_SUBDIRECTORY (esp)
+HPCC_ADD_SUBDIRECTORY (initfiles)
+
+CONFIGURE_FILE( "postinst.in" "postinst" )
+CONFIGURE_FILE( "postrm.in" "postrm" )
+
 SET(CPACK_PACKAGE_VERSION_MAJOR ${majorver})
 SET(CPACK_PACKAGE_VERSION_MINOR ${minorver})
 SET(CPACK_PACKAGE_VERSION_PATCH ${point}${stagever})
@@ -95,7 +120,7 @@ IF (NOT "${CMAKE_VERSION}" VERSION_LESS "2.8.2")
                 ## CPack instruction required for Debian
                 ###
                 MESSAGE ("-- Packing BASH installation files")
-                SET ( CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_SOURCE_DIR}/postinst;${CMAKE_SOURCE_DIR}/prerm;${CMAKE_SOURCE_DIR}/postrm" )
+                SET ( CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_BINARY_DIR}/postinst;${CMAKE_SOURCE_DIR}/prerm;${CMAKE_BINARY_DIR}/postrm" )
             ENDIF ()
 
         ELSEIF ( ${packageManagement} STREQUAL "RPM" )
@@ -105,9 +130,9 @@ IF (NOT "${CMAKE_VERSION}" VERSION_LESS "2.8.2")
             ###
             MESSAGE("-- Will build RPM package")
             MESSAGE ("-- Packing BASH installation files")
-            SET ( CPACK_RPM_POST_INSTALL_SCRIPT_FILE "${CMAKE_SOURCE_DIR}/postinst" )
+            SET ( CPACK_RPM_POST_INSTALL_SCRIPT_FILE "${CMAKE_BINARY_DIR}/postinst" )
             SET ( CPACK_RPM_PRE_UNINSTALL_SCRIPT_FILE "${CMAKE_SOURECE_DIR}/prerm" )
-            SET ( CPACK_RPM_POST_UNINSTALL_SCRIPT_FILE "${CMAKE_SOURCE_DIR}/postrm" )
+            SET ( CPACK_RPM_POST_UNINSTALL_SCRIPT_FILE "${CMAKE_BINARY_DIR}/postrm" )
         ELSE()
             MESSAGE("WARNING: Unsupported package ${packageManagement}.")
         ENDIF ()

@@ -1,0 +1,59 @@
+ESPRequest GraphSVGDataRequest
+{
+    ESParray<string> RRDMetrics;
+    ESParray<string> Clusters;
+    ESParray<string> Servers;
+    long    StartTime;
+    long    EndTime;
+    int     Width;
+    int     Height;
+    string  Title;
+};
+
+ESPresponse [exceptions_inline, encode(0)] GraphSVGDataResponse
+{
+    string Graph;
+};
+
+ESPRequest GetAvailableMetricsRequest
+{
+    string Cluster;
+    string Server;
+};
+
+ESPResponse GetAvailableMetricsResponse
+{
+    ESParray<string> Metrics;
+};
+
+ESPRequest GetAvailableServersForMetricsRequest
+{
+    string Cluster;
+};
+
+ESPResponse GetAvailableServersForMetricsResponse
+{
+    ESParray<string> Servers;
+};
+
+ESPRequest GetAvailableClustersRequest
+{
+    string Empty;
+};
+
+ESPResponse GetAvailableClustersResponse
+{
+    ESParray<string> Clusters;
+};
+
+ESPservice [version("2.0"), default_client_version("2.0"), exceptions_inline("xslt/exceptions.xslt")] ws_rrd
+{
+    ESPmethod getGraphSVG(GraphSVGDataRequest, GraphSVGDataResponse);
+    ESPmethod getAvailableMetrics(GetAvailableMetricsRequest, GetAvailableMetricsResponse);
+    ESPmethod getAvailableServers(GetAvailableServersForMetricsRequest, GetAvailableServersForMetricsResponse);
+    ESPmethod getAvailableClusters(GetAvailableClustersRequest, GetAvailableClustersResponse);
+};
+
+SCMexportdef(ws_rrd);
+
+SCMapi(ws_rrd) IClientws_rrd *createws_rrdClient();

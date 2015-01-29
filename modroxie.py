@@ -482,7 +482,7 @@ def metric_init(params):
       'call_back' : roxie_handler_from_file,
       'time_max' : 90,
       'units' : 'queries',
-      'value_type' : 'queries failed',
+      'value_type' : 'uint',
       'slope:' : 'both',
       'format' : '%u',
       'description' : 'Unknown Query Failed',

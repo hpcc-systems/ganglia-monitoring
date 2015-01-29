@@ -1,0 +1,5 @@
+#!/bin/bash
+
+crontab -l |grep -v "getMetrics.sh"  > /tmp/.cronTabCopy
+crontab /tmp/.cronTabCopy
+rm /tmp/.cronTabCopy
