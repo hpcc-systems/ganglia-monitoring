@@ -332,8 +332,12 @@ define([
 
         _onFilterApply: function () {
             var context = this;
+            var cluster = this.cluster;
+            var server = this.server;
+            var metrics = this.metrics;
+            var epochFilter = this.epochFilter;
+            var epochNow = this.epochNow;
             var graphId = this.cluster + "_" + this.server + "_" + this.metrics + "_" + this.epochFilter;
-            //var graph = dom.byId("graphs");
 
             WsRrd.GangliaRRDGraphList({
                 request:{
