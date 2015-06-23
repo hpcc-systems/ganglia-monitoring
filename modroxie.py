@@ -38,9 +38,9 @@ def roxie_handler_from_file(name):
         print "name: " + child.attrib.get('name')
         print "value: " + child.attrib.get('value')
         return child.attrib.get('value')
-  except IOError:
-    print "IOError"
-    metrics_file.close()
+  except:
+      print "unable to open/process  /tmp/.roxie_metrics file (no roxies on this node?)"
+      sys.exit(0);
 
 def roxie_handler(name):
   conf_file = '/etc/HPCCSystems/environment.conf'
