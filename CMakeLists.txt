@@ -48,7 +48,8 @@ CONFIGURE_FILE( "postrm.in" "postrm" )
 SET(CPACK_PACKAGE_VERSION_MAJOR ${majorver})
 SET(CPACK_PACKAGE_VERSION_MINOR ${minorver})
 SET(CPACK_PACKAGE_VERSION_PATCH ${point}-${stagever})
-
+set (CPACK_RPM_PACKAGE_VERSION "${version}" )
+set (CPACK_RPM_PACKAGE_RELEASE "${stagever}")
 
 set (CPACK_PACKAGE_CONTACT "HPCCSystems <ossdevelopment@lexisnexis.com>")
 set (CPACK_SOURCE_GENERATOR TGZ )
