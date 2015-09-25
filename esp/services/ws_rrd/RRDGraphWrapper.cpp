@@ -107,8 +107,8 @@ MemoryBuffer* CRRDGraphWrapper::getGraph(MemoryBuffer *pBuffer, const StringArra
                 throw MakeStringException(0, "Can not find rrd file for '%s'", strRRDFilePath.str());
             }
 
-            strRRDGraphCmd.appendf(" %s%d%d=%s", pDataDefinitionPrefix1, idxMetric+1, idx+1, strRRDFilePath.str());
-            strRRDGraphCmd.appendf("%s", pDataDefinitionSuffix);
+            strRRDGraphCmd.appendf(" %s%d%d=\"%s", pDataDefinitionPrefix1, idxMetric+1, idx+1, strRRDFilePath.str());
+            strRRDGraphCmd.appendf("%s\"", pDataDefinitionSuffix);
             strRRDGraphCmd.appendf(" %s%d:ds%d%d#%s:%s", pLineDefinition, nLineCount++, idxMetric+1, idx+1, PlotColor[(nLineCount-1)%nPlotColors], pRRDFile);
 
             if (bServerSpecified == false || bClusterSpecified == false)
