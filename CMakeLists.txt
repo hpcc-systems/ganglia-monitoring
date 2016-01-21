@@ -30,7 +30,7 @@ include (${HPCC_GM_SOURCE_DIR}/cmake_modules/gmCommonSetup.cmake)
 include (${HPCC_SOURCE_DIR}/version.cmake)
 
 
-SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -frtti -fPIC -fmessage-length=0 -Wformat -Wformat-security -Wformat-nonliteral -pthread -Wuninitialized")
+SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -frtti -fPIC -fmessage-length=0 -Wformat -Wformat-security -Wformat-nonliteral -pthread -Wuninitialized -std=c++11")
 
 MESSAGE (HPCC_SOURCE_DIR: ${HPCC_SOURCE_DIR})
 ADD_SUBDIRECTORY(${HPCC_SOURCE_DIR} oss EXCLUDE_FROM_ALL)
