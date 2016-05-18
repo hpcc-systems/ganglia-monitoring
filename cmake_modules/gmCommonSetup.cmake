@@ -23,8 +23,8 @@ endif ()
 message ("-- 64bit architecture is ${ARCH64BIT}")
 
 
-IF ("${COMMONSETUP_DONE}" STREQUAL "")
-  SET (COMMONSETUP_DONE 1)
+IF ("${GM_COMMON_SET_UP}" STREQUAL "")
+  SET (GM_COMMON_SET_UP 1)
 
   MACRO (MACRO_ENSURE_OUT_OF_SOURCE_BUILD _errorMessage)
     STRING(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_BINARY_DIR}" insource)
@@ -42,77 +42,7 @@ IF ("${COMMONSETUP_DONE}" STREQUAL "")
 
 #  option(CLIENTTOOLS "Enable the building/inclusion of a Client Tools component." OFF)
 #  option(PLATFORM "Enable the building/inclusion of a Platform component." ON)
-  option(DEVEL "Enable the building/inclusion of a Development component." OFF)
-  option(CLIENTTOOLS_ONLY "Enable the building of Client Tools only." OFF)
-
-  option(USE_ANTLRc "Enable use of ANTLR (C target) to support SQL parsing" OFF)
-  option(USE_BINUTILS "Enable use of binutils to embed workunit info into shared objects" ON)
-  option(USE_CPPUNIT "Enable unit tests (requires cppunit)" OFF)
-  option(USE_OPENLDAP "Enable OpenLDAP support (requires OpenLDAP)" OFF)
-  option(USE_ICU "Enable unicode support (requires ICU)" ON)
-  option(USE_BOOST_REGEX "Configure use of boost regex" ON)
-  option(Boost_USE_STATIC_LIBS "Use boost_regex static library for RPM BUILD" OFF)
-  option(USE_OPENSSL "Configure use of OpenSSL" ON)
-  option(USE_ZLIB "Configure use of zlib" ON)
-  option(USE_GIT "Configure use of GIT (Hooks)" ON)
-  endif()
-  option(USE_LIBARCHIVE "Configure use of libarchive" ON)
-  option(USE_URIPARSER "Configure use of uriparser" OFF)
-  option(USE_NATIVE_LIBRARIES "Search standard OS locations for thirdparty libraries" ON)
-  option(USE_GIT_DESCRIBE "Use git describe to generate build tag" ON)
-  option(CHECK_GIT_TAG "Require git tag to match the generated build tag" OFF)
-  option(USE_XALAN "Configure use of xalan" ON)
-  option(USE_APR "Configure use of Apache Software Foundation (ASF) Portable Runtime (APR) libraries" OFF)
-  option(USE_LIBXSLT "Configure use of libxslt" OFF)
-  option(MAKE_DOCS "Create documentation at build time." OFF)
-  option(MAKE_DOCS_ONLY "Create a base build with only docs." OFF)
-  option(DOCS_DRUPAL "Create Drupal HTML Docs" OFF)
-  option(DOCS_EPUB "Create EPUB Docs" OFF)
-  option(DOCS_MOBI "Create Mobi Docs" OFF)
-  option(USE_RESOURCE "Use resource download in ECLWatch" OFF)
-  option(GENERATE_COVERAGE_INFO "Generate coverage info for gcov" OFF)
-
-  option(USE_PYTHON "Enable Python support" OFF)
-  option(USE_V8 "Enable V8 JavaScript support" OFF)
-  option(USE_JNI "Enable Java JNI support" OFF)
-  option(USE_RINSIDE "Enable R support support" OFF)
-
-  option(USE_OPTIONAL "Automatically disable requested features with missing dependencies" ON)
-
-  if ( USE_PYTHON OR USE_V8 OR USE_JNI OR USE_RINSIDE )
-      set( WITH_PLUGINS ON )
-  endif()
-
-  if ( USE_XALAN AND USE_LIBXSLT )
-      set(USE_XALAN OFF)
-  endif()
-  if ( USE_LIBXSLT )
-      set(USE_LIBXML2 ON)
-  endif()
-  if ( USE_XALAN )
-      set(USE_XERCES ON)
-  endif()
-
-  if ( MAKE_DOCS AND CLIENTTOOLS_ONLY )
-      set( MAKE_DOCS OFF )
-  endif()
-
-  if ( MAKE_DOCS_ONLY AND NOT CLIENTTOOLS_ONLY )
-      set( MAKE_DOCS ON )
-  endif()
-
-  if ( CLIENTTOOLS_ONLY )
-      set(PLATFORM OFF)
-      set(DEVEL OFF)
-  endif()
-
-  option(PORTALURL "Set url to hpccsystems portal download page")
-
-  if ( NOT PORTALURL )
-    set( PORTALURL "http://hpccsystems.com/download" )
-  endif()
-
-  set(CMAKE_MODULE_PATH "${HPCC_GM_SOURCE_DIR}/cmake_modules/")
+ set(CMAKE_MODULE_PATH "${HPCC_GM_SOURCE_DIR}/cmake_modules/")
 
   if(USE_LIBXML2)
     find_package(LIBXML2)
@@ -143,6 +73,7 @@ IF ("${COMMONSETUP_DONE}" STREQUAL "")
   message ("-- 64bit architecture is ${ARCH64BIT}")
 
   set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG -DDEBUG")
+  SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
   set (CMAKE_THREAD_PREFER_PTHREAD 1)
   find_package(Threads)
@@ -425,3 +356,54 @@ IF ("${COMMONSETUP_DONE}" STREQUAL "")
                 OUTPUT_STRIP_TRAILING_WHITESPACE)
         endif()
   ENDMACRO()
+
+  function(LIST_TO_STRING separator outvar)
+    set ( tmp_str "" )
+    list (LENGTH ARGN list_length)
+    if ( ${list_length} LESS 2 )
+      set ( tmp_str "${ARGN}" )
+    else()
+      math(EXPR last_index "${list_length} - 1")
+
+      foreach( index RANGE ${last_index} )
+        if ( ${index} GREATER 0 )
+          list( GET ARGN ${index} element )
+          set( tmp_str "${tmp_str}${separator}${element}")
+        else()
+          list( GET ARGN 0 element )
+          set( tmp_str "${element}")
+        endif()
+      endforeach()
+    endif()
+    set ( ${outvar} "${tmp_str}" PARENT_SCOPE )
+  endfunction()
+
+  function(STRING_TO_LIST separator outvar stringvar)
+    set( tmp_list "" )
+    string(REPLACE "${separator}" ";" tmp_list ${stringvar})
+    string(STRIP "${tmp_list}" tmp_list)
+    set( ${outvar} "${tmp_list}" PARENT_SCOPE)
+  endfunction()
+
+
+
+  ###########################################################################
+  ###
+  ## The following sets the dependency list for a package
+  ###
+  ###########################################################################
+  function(SET_DEPENDENCIES cpackvar)
+    set(_tmp "")
+    if(${cpackvar})
+      STRING_TO_LIST(", " _tmp ${${cpackvar}})
+    endif()
+    foreach(element ${ARGN})
+      list(APPEND _tmp ${element})
+    endforeach()
+    list(REMOVE_DUPLICATES _tmp)
+    LIST_TO_STRING(", " _tmp "${_tmp}")
+    set(${cpackvar} "${_tmp}" CACHE STRING "" FORCE)
+    message(STATUS "Updated ${cpackvar} to ${${cpackvar}}")
+  endfunction()
+
+  endif()
