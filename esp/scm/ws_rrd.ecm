@@ -46,7 +46,7 @@ ESPResponse GetAvailableClustersResponse
     ESParray<string> Clusters;
 };
 
-ESPservice [version("2.0"), default_client_version("2.0"), exceptions_inline("xslt/exceptions.xslt")] ws_rrd
+ESPservice [auth_feature("NONE"), version("2.0"), default_client_version("2.0"), exceptions_inline("xslt/exceptions.xslt")] ws_rrd
 {
     ESPmethod getGraphSVG(GraphSVGDataRequest, GraphSVGDataResponse);
     ESPmethod getAvailableMetrics(GetAvailableMetricsRequest, GetAvailableMetricsResponse);
