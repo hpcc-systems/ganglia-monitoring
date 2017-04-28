@@ -4,55 +4,38 @@
   "defaultSelectedTab": "Network - Hour",
   "tabs": [
    {
-	"name": "Network Hour",
-	"metrics":[
-		["bytes_in", "bytes_out"],
-		["packetsSent", "packetsSent_s", "packetsReceived", "packetsReceived_s", "packetsAbandoned", "packetsAbandoned_s", "packetsRetried", "packetsRetried_s"],
-	       	["ibytiPacketsReceived", "ibytiPacketsSent", "ibytiPacketsReceived_s", "ibytiPacketsSent_s"],
-		["ibytiNoDelaysPrm", "ibytiPacketsFromSelf", "ibytiPacketsTooLate", "ibytiPacketsWorked", "ibytiNoDelaysSec", "ibytiPacketsHalfWorked"],
-		["ibytiPacketsHalfWorked_s", "ibytiNoDelaysSec_s",  "ibytiPacketsReceived_s", "ibytiPacketsSent_s", "ibytiPacketsWorked_s", "ibytiNoDelaysPrm_s", "ibytiPacketsTooLate_s"]
+        "name": "Network",
+        "metrics":[
+                ["bytes_in", "bytes_out"],
+                ["packetsSent", "packetsSent_s", "packetsReceived", "packetsReceived_s", "packetsAbandoned", "packetsAbandoned_s", "packetsRetried", "packetsRetried_s"]
       ],
-	"time":["Hour"]
+        "time":["Hour","Day"]
    },
    {
-	"name": "Network Day",
-	"metrics":[
-        	["bytes_in", "bytes_out"],
-	        ["packetsSent", "packetsSent_s", "packetsReceived", "packetsReceived_s", "packetsAbandoned", "packetsAbandoned_s", "packetsRetried", "packetsRetried_s"],
-	        ["ibytiPacketsReceived", "ibytiPacketsSent", "ibytiPacketsReceived_s", "ibytiPacketsSent_s"],
-		["ibytiNoDelaysPrm", "ibytiPacketsFromSelf", "ibytiPacketsTooLate", "ibytiPacketsWorked", "ibytiNoDelaysSec", "ibytiPacketsHalfWorked"],
-		["ibytiPacketsHalfWorked_s", "ibytiNoDelaysSec_s",  "ibytiPacketsReceived_s", "ibytiPacketsSent_s", "ibytiPacketsWorked_s", "ibytiNoDelaysPrm_s", "ibytiPacketsTooLate_s"]
-	],
-	"time":["Day"]
-   },
-   {
-	"name": "Queries Hour",
-	"metrics":[
-		["queryCount", "queryCount_s"],
-		["loQueryCount", "loQueryCount_s", "hiQueryCount", "hiQueryCount_s", "hiQueryFailed", "slaQueryCount", "loQueryActive"],
-		["unknownQueryFailed", "unknownMin", "unknownMax"]
+        "name": "Queries",
+        "metrics":[
+                ["queryCount", "queryCount_s"],
+                ["loQueryCount", "loQueryCount_s", "hiQueryCount", "hiQueryCount_s", "hiQueryFailed", "slaQueryCount", "loQueryActive"],
+                ["unknownQueryFailed", "unknownMin", "unknownMax"]
       ],
-      "time":["Hour"]
+      "time":["Hour","Week"]
    },
    {
-      	"name": "Sytem Disk and CPU",
-	"metrics" :[
-		["disk_free", "disk_total"],
-		["load_one", "load_five", "load_fifteen"],
-		["cpu_aidle", "cpu_idle", "cpu_nice", "cpu_num", "cpu_system", "cpu_user", "cpu_wio"]
-	],
-	"time":["Hour", "Day","Week"]
+        "name": "Sytem Disk and CPU",
+        "metrics" :[
+                ["disk_free", "disk_total"],
+                ["cpu_aidle", "cpu_idle", "cpu_nice", "cpu_num", "cpu_system", "cpu_user", "cpu_wio"]
+        ],
+        "time":["Day","Week"]
    },
    {
-	"name": "Performance and Health",
-	"metrics" :[
-		["totScanLength", "meanScanLength", "totScans"],
-		["restarts"],
-		["activitiesStarted", "globalLocks", "retriesNeeded"],
-		["leafCacheAdds", "leafCacheHits", "cacheHits", "preloadCacheAdds"],
-		["nodesLoaded"] 
-	],
-	"time":["Hour", "Day", "Week", "Month"]
+        "name": "Performance and Health",
+        "metrics" :[
+                ["restarts"],
+                ["activitiesStarted", "globalLocks", "retriesNeeded"],
+                ["nodesLoaded"]
+        ],
+        "time":["Hour", "Week", "Month"]
   }
   ]
 }
