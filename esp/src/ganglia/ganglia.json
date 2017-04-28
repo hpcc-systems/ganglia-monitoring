@@ -31,7 +31,6 @@
    {
         "name": "Performance and Health",
         "metrics" :[
-                ["totScanLength", "meanScanLength", "totScans"],
                 ["restarts"],
                 ["activitiesStarted", "globalLocks", "retriesNeeded"],
                 ["nodesLoaded"]
