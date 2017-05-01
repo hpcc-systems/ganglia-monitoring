@@ -104,13 +104,13 @@ IF ("${GM_COMMON_SET_UP}" STREQUAL "")
 
   # Build tag generation
 
-  set(majorver ${HPCC_MAJOR})
-  set(minorver ${HPCC_MINOR})
-  set(point ${HPCC_POINT})
-  if ( "${HPCC_MATURITY}" STREQUAL "release" )
-    set(stagever "${HPCC_SEQUENCE}")
+  set(majorver ${GANGLIA_MAJOR})
+  set(minorver ${GANGLIA_MINOR})
+  set(point ${GANGLIA_POINT})
+  if ( "${GANGLIA_MATURITY}" STREQUAL "release" )
+    set(stagever "${GANGLIA_SEQUENCE}")
   else()
-    set(stagever "${HPCC_MATURITY}${HPCC_SEQUENCE}")
+    set(stagever "${GANGLIA_MATURITY}${GANGLIA_SEQUENCE}")
   endif()
   set(version ${majorver}.${minorver}.${point})
 
