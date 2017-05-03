@@ -139,6 +139,15 @@ IF (NOT "${CMAKE_VERSION}" VERSION_LESS "2.8.2")
         ENDIF ()
 
     ENDIF ( CMAKE_SYSTEM MATCHES Linux )
+
+    SET(HPCC_VERSION "${HPCC_MAJOR}.${HPCC_MINOR}.${HPCC_POINT}")
+    IF ( "${packageManagement}" STREQUAL "DEB" )
+        SET(HPCC_VERSION "${HPCC_VERSION}~")
+    ENDIF()
+
+    MATH( EXPR minor_ceiling "${HPCC_MINOR} + 1")
+    SET(HPCC_VERSION_CEILING "${HPCC_MAJOR}.${minor_ceiling}.0")
+    
     IF ( EXISTS ${CMAKE_MODULE_PATH}/dependencies/${packageRevision}.cmake )
         INCLUDE( ${CMAKE_MODULE_PATH}/dependencies/${packageRevision}.cmake )
     ELSE()
