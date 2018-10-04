@@ -15,4 +15,3 @@
 ################################################################################
 HPCC_ADD_SUBDIRECTORY (scm)
 HPCC_ADD_SUBDIRECTORY (services/ws_rrd)
-HPCC_ADD_SUBDIRECTORY (src)
