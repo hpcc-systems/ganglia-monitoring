@@ -4,6 +4,8 @@ cmake_minimum_required (VERSION 2.8.2)
 set (HPCC_GM_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set (CMAKE_MODULE_PATH "${HPCC_GM_SOURCE_DIR}/cmake_modules/")
 
+set(BUILD_TAG "${projname}_${version}-${stagever}")
+
 ###
 ## Build Level
 ###
