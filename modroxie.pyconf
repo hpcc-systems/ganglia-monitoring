@@ -12,646 +12,646 @@ collection_group {
  metric {
 		name = "resultsReceived"
 		title = "Total Results Received"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiPacketsFromSelf_s"
 		title = "IBYTI Packets From Self / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	} 
  metric {
 		name = "restarts"
 		title = "Total Restarts"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	} 
  metric {
 		name = "nodeCacheHits_s"
 		title = "Node Cache Hits / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	} 
  metric {
 		name = "ibytiPacketsSent_s"
 		title = "IBYTI Packets Sent / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "maxScanLength"
 		title = "Max Scan Length"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiPacketsWorked_s"
 		title = "IBYTI Packets Worked / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "hiMax_s"
 		title = "High Max / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "retriesIgnoredPrm"
 		title = "Retries Ignored Prm"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "retriesReceivedSec"
 		title = "Retries Received Sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "loQueryActive_s"
 		title = "Low Query Active / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "retriesReceivedPrm_s"
 		title = "Retries Received Prm / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "nodeCacheHits"
 		title = "Node Cache Hits"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "queryCount_s"
 		title = "Query Count / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "loQueryActive"
 		title = "Low Query Active"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "cacheAdds_s"
 		title = "Cache Adds / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "unknownMin_s"
 		title = "Unknown Min / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "packetsAbandoned"
 		title = "Packets Abandoned"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "nodeCacheAdds"
 		title = "Node Cache Adds"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "loAverage"
 		title = "Low Average"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "slaQueryFailed_s"
 		title = "Slave Query Failed / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "preloadCacheHits"
 		title = "Preload Cache Hits"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "loMin"
 		title = "Low Min"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "activitiesStarted"
 		title = "Activities Started"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "diskReadStarted"
 		title = "Disk Read Started"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "globalLocks"
 		title = "Global Locks"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "retriesNeeded"
 		title = "Retries Needed"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiPacketsSent"
 		title = "IBYTI Packets Sent"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "loMax"
 		title = "Low Max"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "hiQueryActive_s"
 		title = "High Query Active / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "hiQueryActive"
 		title = "hiQueryActive"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "unknownQueryFailed"
 		title = "Unknown Query Failed"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "loQueryCount"
 		title = "Low Query Count"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiNoDelaysSec"
 		title = "ibytiNoDelaysSec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "loQueryCount_s"
 		title = "Low Query Count / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "unknownMin"
 		title = "Unknown Min"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "packetsReceived"
 		title = "Packets Received"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "unwantedDiscarded_s"
 		title = "Unwanted Discarded / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "hiQueryFailed"
 		title = "High Query Failed"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "rowsIn"
 		title = "Rows In"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "unknownQueryActive"
 		title = "Unknown Query Active"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "unknownMax_s"
 		title = "Unknown Max / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "retriesSent_s"
 		title = "Retries Sent / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiNoDelaysPrm"
 		title = "IBYTI No Delays Prm"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "slaQueryActive_s"
 		title = "Slave Queries Active / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "packetsAbandoned_s"
 		title = "Packets Abandoned / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "slaMin_s"
 		title = "Slave Min / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "totScanLength"
 		title = "Total Scan Length"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiPacketsHalfWorked_s"
 		title = "IBYTI Packets Half Worked / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "slaMax"
 		title = "Slave Max"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "packetsReceived_s"
 		title = "Packets Received / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "cacheHits"
 		title = "Cache Hits"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "hiQueryFailed_s"
 		title = "High Query Failed / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "rowsIn_s"
 		title = "Rows In / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiPacketsFromSelf"
 		title = "IBYTI Packets From Self"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "slaQueryCount_s"
 		title = "Slave Query Count / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "leafCacheHits"
 		title = "Leaf Cache Hits"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "nodeCacheAdds_s"
 		title = "Node Cache Adds / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "leafCacheAdds_s"
 		title = "Leaf Cache Adds / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "unknownQueryCount_s"
 		title = "Unknown Query Count / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "cacheAdds"
 		title = "Cache Adds"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "packetsRetried_s"
 		title = "Packets Retried / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "hiMax"
 		title = "High Max"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "hiMin"
 		title = "High Min"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "postFiltered_s"
 		title = "Post Filtered / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "unknownQueryFailed_s"
 		title = "Unknown Query Failed / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiNoDelaysSec_s"
 		title = "IBYTI No Delays Sec / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "maxQueueLength"
 		title = "Max Queue Length"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "leafCacheAdds"
 		title = "Leaf Cache Adds"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "packetsRetried"
 		title = "Packets Retried"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "slavesActive"
 		title = "Slaves Active"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "hiMin_s"
 		title = "High Min / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "hiAverage"
 		title = "High Average"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
 /* metric {
 		name = "lastQueryTime"
 		title = "Last Query Time"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}*/
  metric {
 		name = "packetsSent"
 		title = "Packets Sent"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "dataBufferPages"
 		title = "Data Buffer Pages"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "loMin_s"
 		title = "Low Min / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "slaQueryFailed"
 		title = "Slave Query Failed"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "unknownAverage"
 		title = "Unknown Average"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "resultsReceived_s"
 		title = "Results Received / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	} 
  metric {
 		name = "unknownQueryCount"
 		title = "Unknown Query Count"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "nodesLoaded"
 		title = "Nodes Loaded"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "preloadCacheAdds"
 		title = "Preload Cache Adds"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "meanScanLength"
 		title = "Mean Scan Length"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "unknownQueryActive_s"
 		title = "Unknown Query Active / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "retriesSent"
 		title = "Retries Sent"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "hiQueryCount_s"
 		title = "High Query Count / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "activitiesCompleted"
 		title = "Activities Completed"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "diskReadCompleted"
 		title = "Disk Read Completed"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "dataBuffersActive"
 		title = "Data Buffers Active"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiNoDelaysPrm_s"
 		title = "IBYTI No Delays Prm / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiPacketsReceived"
 		title = "IBYTI Packets Received"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "leafCacheHits_s"
 		title = "Leaf Cache Hits / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "slaAverage"
 		title = "Slave Average"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "retriesReceivedPrm"
 		title = "Retries Received Prm"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "unwantedDiscarded"
 		title = "Unwanted Discarded"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "slaMin"
 		title = "Slave Min"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "retriesIgnoredSec_s"
 		title = "Retries Ignored Sec / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "retriesReceivedSec_s"
 		title = "Retries Received Sec / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "loQueryFailed_s"
 		title = "Low Query Failed / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "maxSlavesActive"
 		title = "Max Slaves Active"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "numFilesToProcess"
 		title = "Num Files To Process"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "rowsOut_s"
 		title = "Rows Out / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "postFiltered"
 		title = "POST Filtered"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "retriesNeeded_s"
 		title = "Retries Needed / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "slaMax_s"
 		title = "Slave Max / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiPacketsTooLate"
 		title = "IBYTI Packets Too Late"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "cacheHits_s"
 		title = "Cache Hits / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "totScans"
 		title = "Total Scans"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "slaQueryActive"
 		title = "Slave Queries Active"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiPacketsReceived_s"
 		title = "IBYTI Packets Received / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "indexRecordsRead"
 		title = "Index Records Read"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "rowsOut"
 		title = "Rows Out"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiPacketsWorked"
 		title = "IBYTI Packets Worked"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "queryCount"
 		title = "Query Count"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiPacketsTooLate_s"
 		title = "IBYTI Packets Too Late / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "ibytiPacketsHalfWorked"
 		title = "IBYTI Packets Half Worked"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "retriesIgnoredPrm_s"
 		title = "Retries Ignored Prm / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "hiQueryCount"
 		title = "High Query Count"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "packetsSent_s"
 		title = "Packets Sent / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "globalSignals"
 		title = "Global Signals"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "unknownMax"
 		title = "Unknown Max"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "slaQueryCount"
 		title = "Slave Query Count"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "indexRecordsRead_s"
 		title = "Index Records Read / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "loMax_s"
 		title = "Low Max / sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
 /* metric {
 		name = "lastQueryDate"
 		title = "Last Query Date"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}*/
  metric {
 		name = "retriesIgnoredSec"
 		title = "Retries Ignored Sec"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "abortsSent"
 		title = "Aborts Sent"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
  metric {
 		name = "loQueryFailed"
 		title = "Low Query Failed"
-		//value_threshold = 1.0
+		#value_threshold = 1.0
 	}
 }
