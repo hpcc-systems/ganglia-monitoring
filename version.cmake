@@ -4,8 +4,8 @@
 set ( HPCC_NAME "Ganglia Monitoring" )
 set ( HPCC_PROJECT "ganglia-monitoring" )
 set ( HPCC_MAJOR 7 )
-set ( HPCC_MINOR 5 )
-set ( HPCC_POINT 0 )
-set ( HPCC_MATURITY "trunk" )
+set ( HPCC_MINOR 6 )
+set ( HPCC_POINT 1 )
+set ( HPCC_MATURITY "closedown" )
 set ( HPCC_SEQUENCE 0 )
 ###
