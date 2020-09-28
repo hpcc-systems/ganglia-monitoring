@@ -55,6 +55,7 @@ include_directories (
          ${HPCC_SOURCE_DIR}/esp/http/platform
          ${HPCC_SOURCE_DIR}/system/mp
          ${HPCC_SOURCE_DIR}/system/xmllib
+         ${HPCC_SOURCE_DIR}/common/thorhelper
          ${CMAKE_BINARY_DIR}
          ${CMAKE_BINARY_DIR}/oss
          ${CMAKE_BINARY_DIR}/esp/services/ws_rrd
